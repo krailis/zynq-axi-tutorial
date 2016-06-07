@@ -18,7 +18,11 @@ For the next step of our implementation Vivado Design Suite 2014.4 is utilized. 
 
 ### AXI4-Lite Interface
 
-In case of an IP with an AXI4-Lite interface the interconnection with the PS is for the most part automated and the Synthesis, Implementation and Bitstream Generation steps may follow. Vivado automatically adds an AXI Interconnect Block and a Processor System Reset. The IRQ_F2P port of the ZYNQ should be enabled in order to receive interrupts from our custom AXI4-Lite IP.
+In case of an IP with an AXI4-Lite interface the interconnection with the PS is for the most part automated and the Synthesis, Implementation and Bitstream Generation steps may follow. Vivado automatically adds an AXI Interconnect Block and a Processor System Reset. The IRQ_F2P port of the ZYNQ should be enabled in order to receive interrupts from our custom AXI4-Lite IP. For the automatic generation of a project including a block design, ready to be synthesized and implemented open a terminal, change the directory to /zedboard_axi4lite and run the command
+
+```bash
+vivado -mode tcl -source create_add_one_axi4lite.tcl
+```
 
 ### AXI4-Stream Interface
 
