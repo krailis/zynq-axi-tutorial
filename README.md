@@ -18,8 +18,8 @@ For the next step of our implementation Vivado Design Suite 2014.4 is utilized. 
 
 ### AXI4-Lite Interface
 
-In case of an IP with an AXI4-Lite interface the interconnection with the PS is for the most part automated and the Synthesis, Implementation and Bitstream Generation steps may follow. 
+In case of an IP with an AXI4-Lite interface the interconnection with the PS is for the most part automated and the Synthesis, Implementation and Bitstream Generation steps may follow. Vivado automatically adds an AXI Interconnect Block and a Processor System Reset. The IRQ_F2P port of the ZYNQ should be enabled in order to receive interrupts from our custom AXI4-Lite IP.
 
 ### AXI4-Stream Interface
 
-For an IP with AXI4-Stream interfaces the interconnection process is not as automated as in the previous case. AXI4-Stream peripherals require the addition of AXI DMA IPs.
+For an IP with AXI4-Stream interfaces the interconnection process is partially automated in comparison with the previous case. AXI4-Stream peripherals require the manual addition and re-configuration of AXI DMA IP Blocks. The AXI DMA IP performs as both slave and master to the ZYNQ-7 Processing System. Vivado automatically adds components similarly to the AXI4-Lite case. An additional component is an AXI Memory Interconnect Block for the AXI DMA to handle the main memory through ZYNQ's High-Performance Slave Port.
