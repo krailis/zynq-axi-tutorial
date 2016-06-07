@@ -24,6 +24,15 @@ In case of an IP with an AXI4-Lite interface the interconnection with the PS is 
 vivado -mode tcl -source create_add_one_axi4lite.tcl
 ```
 
+Vivado will launch, a project will be created followed by the creation of a block design. After this step you may select Generate Bitstream. A pop-up window will inform you that you need to run the Synthesis and Implementation steps first. Choose 'yes' and wait for the process to be completed. Finally, choose File->Export->Export Hardware and make sure that the 'Include Bitstream' option is selected.
+
+
 ### AXI4-Stream Interface
 
-For an IP with AXI4-Stream interfaces the interconnection process is partially automated in comparison with the previous case. AXI4-Stream peripherals require the manual addition and re-configuration of AXI DMA IP Blocks. The AXI DMA IP performs as both slave and master to the ZYNQ-7 Processing System. Vivado automatically adds components similarly to the AXI4-Lite case. An additional component is an AXI Memory Interconnect Block for the AXI DMA to handle the main memory through ZYNQ's High-Performance Slave Port.
+For an IP with AXI4-Stream interfaces the interconnection process is partially automated in comparison with the previous case. AXI4-Stream peripherals require the manual addition and re-configuration of AXI DMA IP Blocks. The AXI DMA IP performs as both slave and master to the ZYNQ-7 Processing System. Vivado automatically adds components similarly to the AXI4-Lite case. An additional component is an AXI Memory Interconnect Block for the AXI DMA to handle the main memory through ZYNQ's High-Performance Slave Port. For the generation of this version of the system change the directory to /zedboard_axi4stream and run the command
+
+```bash
+vivado -mode tcl -source create_add_one_axi4stream.tcl
+```
+
+Then, follow the steps described for AXI4-Lite interface in order to generate the bitstream file. Some minor warnings might make their appearance but you may ignore them.
