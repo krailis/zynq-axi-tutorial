@@ -36,3 +36,19 @@ vivado -mode tcl -source create_add_one_axi4stream.tcl
 ```
 
 Then, follow the steps described for AXI4-Lite interface in order to generate the bitstream file. Some minor warnings might make their appearance but you may ignore them.
+
+## Generation of Custom Linux Distributions
+
+Having generated the bitstream for our target device, the next step is to create a Linux Distribution for our hardware which will now include our custom IPs. For this purpose PetaLinux Tools 2014.4 were employed. Change the directory to the clonned project and execute the command
+
+```bash
+petalinux-create -t project --name peta_add_one
+```
+
+Then change the directory to zedboard_axi4lite/zedboard_axi4lite.sdk or zedboard_axi4stream/zedboard_axi4stream.sdk depending on which version you wish to test. Now run the command
+
+```bash
+petalinux-config --get-hw-description -p ../../peta_add_one
+```
+
+The tool will extract the hardware description. You should then choose 'exit' in the prompt that follows. At this point a device-tree including our custom IPs will have been produced in the directory peta_add_one/subsystems/linux/configs/device-tree.
