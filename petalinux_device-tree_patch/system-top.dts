@@ -1,0 +1,8 @@
+/dts-v1/;
+/include/ "system-conf.dtsi"
+/ {
+};
+
+&add_one_0 {
+  compatible = "generic-uio";
+};
