@@ -51,4 +51,21 @@ Then change the directory to zedboard_axi4lite/zedboard_axi4lite.sdk or zedboard
 petalinux-config --get-hw-description -p ../../peta_add_one
 ```
 
-The tool will extract the hardware description. You should then choose 'exit' in the prompt that follows. At this point a device-tree including our custom IPs will have been produced in the directory peta_add_one/subsystems/linux/configs/device-tree.
+The tool will extract the hardware description. You should then choose 'exit' in the prompt that follows. At this point a device-tree including our custom IPs will have been produced in the directory peta_add_one/subsystems/linux/configs/device-tree. For the AXI4-Lite version our custom accelerator should be compatible with the Linux UIO Framework in order to be easily accessed from a userspace application. For this purpose the system-top.dts file in the aforementioned directory should be replaced with the system-top.dts file from the petalinux_device-tree_patch folder. For the AXI4-Stream version no additional actions are required and the file should not be replaced. Then we are ready to build the Linux distribution by running the command
+
+```bash
+petalinux-build
+```
+
+while inside the /peta_add_one directory. When Linux is built change your directory to images/linux. Now run the command
+
+```bash
+petalinux-package --boot --fsbl zynq_fsbl.elf --fpga ../../../zedboard_axi4lite/zedboard_axi4lite.runs/impl_1/system_wrapper.bit --uboot
+```
+or
+
+```bash
+petalinux-package --boot --fsbl zynq_fsbl.elf --fpga ../../../zedboard_axi4stream/zedboard_axi4stream.runs/impl_1/system_wrapper.bit --uboot
+```
+
+depending on the desired version of the system. A BOOT.BIN file will be created. In order for the ZedBoard to be booted with Linux, the BOOT.BIN file along with the image.ub file should be copied to the SD card.
